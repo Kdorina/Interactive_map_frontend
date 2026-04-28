@@ -13,10 +13,21 @@ function App() {
       <Sidebar activePanel={activePanel} setActivePanel={setActivePanel} />
 
       {activePanel === "home" && (
-        <SavedPointsPanel
-          points={points}
-          onSelectPoint={setSelectedPoint}
-        />
+       <SavedPointsPanel
+        points={points}
+        selectedPoint={selectedPoint}
+        onSelectPoint={setSelectedPoint}
+        onBack={() => setSelectedPoint(null)}
+      />
+      )}
+
+         {activePanel === "settings" && (
+       <SavedPointsPanel
+        points={points}
+        selectedPoint={selectedPoint}
+        onSelectPoint={setSelectedPoint}
+        onBack={() => setSelectedPoint(null)}
+      />
       )}
 
       <Map
