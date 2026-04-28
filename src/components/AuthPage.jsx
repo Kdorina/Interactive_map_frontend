@@ -1,8 +1,7 @@
 import { useState } from "react"
 
-export default function AuthPage({ onLogin }) {
-  const [mode, setMode] = useState("register")
-
+export default function AuthPage({ onLogin, initialMode = "register" }) {
+  const [mode, setMode] = useState(initialMode)
   const handleSubmit = (e) => {
     e.preventDefault()
 
