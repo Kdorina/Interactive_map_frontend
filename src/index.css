@@ -752,3 +752,27 @@ body {
 .emoji-marker:hover {
   transform: scale(1.2);
 }
+
+/* Cluster number styles */
+.cluster-wrapper {
+  background: transparent;
+}
+
+.custom-cluster {
+  width: 30px;
+  height: 30px;
+
+  background: white;
+  color: #2fa487;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 500;
+  font-size: 13px;
+
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}

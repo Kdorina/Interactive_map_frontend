@@ -251,7 +251,16 @@ export default function Map({ points, setPoints, selectedPoint }) {
         )}
 
         {/* SAVED POINTS */}
-        <MarkerClusterGroup chunkedLoading>
+        <MarkerClusterGroup chunkedLoading iconCreateFunction={(cluster) => {
+          const count = cluster.getChildCount()
+
+          return L.divIcon({
+            html: `<div class="custom-cluster">${count}</div>`,
+            className: "cluster-wrapper",
+            iconSize: [50, 50],
+          })
+        }} >
+          
         {points.map((point) => (
           <Marker
             key={point.id}
