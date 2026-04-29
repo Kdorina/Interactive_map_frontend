@@ -8,6 +8,7 @@ import {
   useMap,
 } from "react-leaflet"
 import L from "leaflet"
+import MarkerClusterGroup from "react-leaflet-cluster"
 
 // 🔥 SAJÁT MARKER IKON
 const pinkIcon = L.icon({
@@ -250,6 +251,7 @@ export default function Map({ points, setPoints, selectedPoint }) {
         )}
 
         {/* SAVED POINTS */}
+        <MarkerClusterGroup chunkedLoading>
         {points.map((point) => (
           <Marker
             key={point.id}
@@ -268,8 +270,9 @@ export default function Map({ points, setPoints, selectedPoint }) {
                     alt={point.title}
                     style={{
                       width: "180px",
-                      borderRadius: "8px",
+                      borderRadius: "30px",
                       marginTop: "8px",
+                      
                     }}
                   />
                 )}
@@ -277,6 +280,7 @@ export default function Map({ points, setPoints, selectedPoint }) {
             </Popup>
           </Marker>
         ))}
+      </MarkerClusterGroup>
       </MapContainer>
     </div>
   )
