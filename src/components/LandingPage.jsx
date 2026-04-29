@@ -1,5 +1,6 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"
 import "leaflet/dist/leaflet.css"
+import MapShowcase from "./MapShowcase"
 
 export default function LandingPage({ onStart, onLogin, onRegister }) {
   return (
@@ -19,28 +20,13 @@ export default function LandingPage({ onStart, onLogin, onRegister }) {
           Jelöld meg a helyeket, tölts fel képeket, és oszd meg az élményeidet
           egy interaktív térképen.
         </p>
-
-        <div className="landing-map">
-          <MapContainer
-            center={[52.3676, 4.9041]}
-            zoom={13}
-            scrollWheelZoom={false}
-            style={{ width: "100%", height: "100%" }}
-          >
-            <TileLayer
-              attribution="&copy; OpenStreetMap"
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-
-            <Marker position={[52.3676, 4.9041]}>
-              <Popup>Amsterdam</Popup>
-            </Marker>
-          </MapContainer>
-        </div>
-
-        <button className="start-btn" onClick={onStart}>
+         <button className="start-btn" onClick={onStart}>
           Kezdjük el
         </button>
+
+        <div className="landing-map">
+          <MapShowcase />
+        </div>
       </section>
     </div>
   )
