@@ -172,8 +172,4 @@ Mérnökinformatikus szak
 Szoftverfejlesztés specializáció
 
 ## Licenc
-
 A projekt oktatási célra készült.
-=======
-# Interactive_map_frontend
->>>>>>> ce7294ad241820772e23a80011057147e163b9ea
