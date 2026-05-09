@@ -38,22 +38,23 @@ export default function SavedPointsPanel({
           )}
         </div>
 
-        <h2 className="detail-title">{selectedPoint.title}</h2>
-
-        <div className="detail-location">
-          📍 {selectedPoint.location || selectedPoint.title}
+        <div style={{display:"inline-flex", gap:"10px", alignItems:"center", paddingBottom:"10px"}} >
+          <h2 className="detail-title">{selectedPoint.title}</h2>
+          {selectedPoint.category && (
+              <span className="tag">{selectedPoint.category} </span>
+            )}
         </div>
 
         <div className="point-tags">
-          {selectedPoint.category && (
-            <span className="tag">{selectedPoint.category}</span>
-          )}
-
           {selectedPoint.country && (
             <span className="country-tag">{selectedPoint.country}</span>
           )}
         </div>
 
+        <div className="detail-location">
+          📍 {selectedPoint.location || selectedPoint.title}
+        </div>
+ 
         {selectedPoint.description && (
           <p className="detail-description">{selectedPoint.description}</p>
         )}
@@ -101,17 +102,23 @@ export default function SavedPointsPanel({
             </div>
 
             <div className="point-info">
-              <h3>{point.title}</h3>
+              <div>
+                <h3>{point.title}</h3>
+                 
+              </div>
+             
 
               <div className="point-location">
                 📍 {point.location || point.title}
               </div>
 
-              <div className="point-tags">
-                {point.category && <span className="tag">{point.category}</span>}
+              <div className="point-tags" style={{display:"flex", gap:"10px"}} >
                 {point.country && (
                   <span className="country-tag">{point.country}</span>
+
                 )}
+                {point.category && <span className="tag">{point.category}</span>}
+                
               </div>
 
               {point.description && <p>{point.description}</p>}

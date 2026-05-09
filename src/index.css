@@ -1,6 +1,9 @@
 body {
   margin: 0;
 }
+.leaflet-bottom {
+  display: none;
+}
 
 .profile-button {
   position: absolute;
@@ -143,7 +146,7 @@ body {
 }
 
 .points-list {
-  height: 650px;
+  height: 90%;
   overflow-y: auto;
   padding-right: 18px;
 }
@@ -189,7 +192,7 @@ body {
 }
 
 .point-info h3 {
-  margin: 0 0 8px;
+  margin: 0px;
   font-size: 19px;
   font-weight: 700;
 }
@@ -211,12 +214,6 @@ body {
   font-size: 12px;
 }
 
-.point-info p {
-  margin: 0;
-  font-size: 14px;
-  font-style: italic;
-  line-height: 1.25;
-}
 
 
 /* Sidebar css */
@@ -296,7 +293,7 @@ body {
 
 .detail-title {
   font-size: 28px;
-  margin: 0 0 10px;
+  margin: 0px;
 }
 
 .detail-location {
