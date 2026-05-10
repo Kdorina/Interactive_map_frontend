@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react"
 import TextField from "@mui/material/TextField"
 import InputAdornment from "@mui/material/InputAdornment"
@@ -50,115 +49,139 @@ export default function SavedPointsPanel({
     setIsEditing(false)
   }
 
+  const handleDelete = () => {
+    const confirmed = window.confirm("Biztosan törölni szeretnéd ezt a pontot?")
+    if (!confirmed) return
+
+    onDeletePoint(selectedPoint.id)
+  }
+
   if (selectedPoint) {
     return (
       <div className="saved-panel">
+        <div className="detail-topbar">
         <button className="back-btn" onClick={onBack}>
           ← Vissza
         </button>
 
-        <div className="detail-images">
-          {selectedPoint.imagePreview ? (
-            <img
-              src={selectedPoint.imagePreview}
-              alt={selectedPoint.title}
-              onClick={() => setIsImageOpen(true)}
-              className="detail-image"
-            />
-          ) : (
-            <div className="detail-placeholder"></div>
-          )}
-        </div>
-
-        <div className="detail-content">
-          {!isEditing ? (
-  <>
-    <h2 className="detail-title">{formData.title}</h2>
-
-    <div className="detail-meta">
-      {formData.country && (
-        <span className="country-tag">{formData.country}</span>
-      )}
-
-      {formData.category && (
-        <span className="detail-tag">{formData.category}</span>
-      )}
-    </div>
-
-    <div className="detail-location">
-      📍 {formData.location || formData.title}
-    </div>
-
-    {formData.description && (
-      <p className="detail-description">{formData.description}</p>
-    )}
-  </>
-) : (
-  <>
-    <textarea
-      className="edit-title"
-      name="title"
-      value={formData.title || ""}
-      onChange={handleChange}
-    />
-
-    <div className="detail-meta">
-      {formData.country && (
-        <span className="country-tag">{formData.country}</span>
-      )}
-
-      {formData.category && (
-        <span className="detail-tag">{formData.category}</span>
-      )}
-    </div>
-
-    <div className="detail-location">
-      📍 {formData.location || formData.title}
-    </div>
-
-    <textarea
-      className="edit-description"
-      name="description"
-      value={formData.description || ""}
-      onChange={handleChange}
-      placeholder="Leírás"
-    />
-  </>
-)}
-
-          <div className="detail-actions">
+        
+          <div className="image-actions">
             {!isEditing ? (
-              <button className="edit-btn" onClick={() => setIsEditing(true)}>
-                Szerkesztés
+              <button
+                className="image-action-btn edit"
+                onClick={() => setIsEditing(true)}
+                title="Szerkesztés"
+              >
+                ✏️
               </button>
             ) : (
               <>
-                <button className="save-btn" onClick={handleSave}>
-                  Mentés
+                <button
+                  className="image-action-btn save"
+                  onClick={handleSave}
+                  title="Mentés"
+                >
+                  ✓
                 </button>
 
                 <button
-                  className="cancel-btn"
+                  className="image-action-btn cancel"
                   onClick={() => {
                     setFormData(selectedPoint)
                     setIsEditing(false)
                   }}
+                  title="Mégse"
                 >
-                  Mégse
+                  ✕
                 </button>
               </>
             )}
 
             <button
-              className="delete-btn"
-              onClick={() => onDeletePoint(selectedPoint.id)}
+              className="image-action-btn delete"
+              onClick={handleDelete}
+              title="Törlés"
             >
-              Törlés
+              🗑️
             </button>
           </div>
+
+         
+        </div>
+      <div className="detail-image-card">
+        {selectedPoint.imagePreview ? (
+              <img
+                src={selectedPoint.imagePreview}
+                alt={selectedPoint.title}
+                onClick={() => setIsImageOpen(true)}
+                className="detail-image"
+              />
+            ) : (
+              <div className="detail-placeholder"></div>
+            )}
+            </div>
+        <div className="detail-content">
+          {!isEditing ? (
+            <>
+              <h2 className="detail-title">{formData.title}</h2>
+
+              <div className="detail-meta">
+                {formData.country && (
+                  <span className="country-tag">{formData.country}</span>
+                )}
+
+                {formData.category && (
+                  <span className="detail-tag">{formData.category}</span>
+                )}
+              </div>
+
+              <div className="detail-location">
+                📍 {formData.location || formData.title}
+              </div>
+
+              {formData.description && (
+                <div className="description-card">
+                  <span className="quote-mark">”</span>
+                  <p>{formData.description}</p>
+                </div>
+              )}
+            </>
+          ) : (
+            <>
+              <textarea
+                className="edit-title"
+                name="title"
+                value={formData.title || ""}
+                onChange={handleChange}
+                placeholder="Hely neve"
+              />
+
+              <div className="detail-meta">
+                {formData.country && (
+                  <span className="country-tag">{formData.country}</span>
+                )}
+
+                {formData.category && (
+                  <span className="detail-tag">{formData.category}</span>
+                )}
+              </div>
+
+              <div className="detail-location">
+                📍 {formData.location || formData.title}
+              </div>
+
+              <textarea
+                className="edit-description"
+                name="description"
+                value={formData.description || ""}
+                onChange={handleChange}
+                placeholder="Leírás"
+              />
+            </>
+          )}
         </div>
 
-        {isImageOpen && (
+        {isImageOpen && selectedPoint.imagePreview && (
           <div className="image-modal" onClick={() => setIsImageOpen(false)}>
             <img
               src={selectedPoint.imagePreview}
