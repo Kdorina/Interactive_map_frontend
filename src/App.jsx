@@ -5,6 +5,7 @@ import Map from "./components/Map"
 import Sidebar from "./components/Sidebar"
 import SavedPointsPanel from "./components/SavedPointsPanel"
 import SettingsPanel from "./components/SettingsPanel"
+import CountryGroupsPanel from "./components/CountryGroupsPanel"
 
 function App() {
   const [page, setPage] = useState("landing")
@@ -60,6 +61,13 @@ function App() {
           onSelectPoint={setSelectedPoint}
           onBack={() => setSelectedPoint(null)}
         />
+      )}
+      {activePanel === "files" && (
+      <CountryGroupsPanel
+        points={points}
+        setSelectedPoint={setSelectedPoint}
+        setActivePanel={setActivePanel}
+      />
       )}
 
       {activePanel === "settings" && (
