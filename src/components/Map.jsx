@@ -394,33 +394,41 @@ export default function Map({
                 },
               }}
             >
-              <Popup>
-                <div>
-                  <strong>{point.title}</strong>
-                  <br />
-
-                  {point.category && (
-                    <>
-                      <small>{point.category}</small>
-                      <br />
-                    </>
-                  )}
-
-                  {point.country && <small>{point.country}</small>}
-
-                  {point.description && <p>{point.description}</p>}
-
+              <Popup className="custom-map-popup">
+                <div className="popup-card">
                   {point.imagePreview && (
-                    <img
-                      src={point.imagePreview}
-                      alt={point.title}
-                      style={{
-                        width: "180px",
-                        borderRadius: "30px",
-                        marginTop: "8px",
-                      }}
-                    />
+                    <div className="popup-image-wrap">
+                      <img
+                        src={point.imagePreview}
+                        alt={point.title}
+                        className="popup-image"
+                      />
+                    </div>
                   )}
+
+                  <div className="popup-content">
+                    <div className="popup-header">
+                      <h3>{point.title}</h3>
+                    </div>
+
+                    <div className="popup-tags">
+                      {point.category && (
+                        <span className="popup-tag">{point.category}</span>
+                      )}
+
+                      {point.country && (
+                        <span className="popup-country">{point.country}</span>
+                      )}
+                    </div>
+
+                    <p className="popup-location">
+                      📍 {point.location || point.title}
+                    </p>
+
+                    {point.description && (
+                      <p className="popup-description">{point.description}</p>
+                    )}
+                  </div>
                 </div>
               </Popup>
             </Marker>
