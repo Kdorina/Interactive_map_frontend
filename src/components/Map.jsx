@@ -19,21 +19,33 @@ const pinkIcon = L.icon({
   popupAnchor: [0, -42],
 })
 
-const createEmojiIcon = (emoji) =>
+const createEmojiIcon = (emoji, isSelected = false) =>
   L.divIcon({
-    html: `<div class="emoji-marker">${emoji}</div>`,
+    html: `
+      <div class="${isSelected ? "emoji-marker selected-marker" : "emoji-marker"}">
+        ${emoji}
+      </div>
+    `,
     className: "",
-    iconSize: [40, 40],
-    iconAnchor: [20, 40],
+    iconSize: isSelected ? [52, 52] : [40, 40],
+    iconAnchor: isSelected ? [26, 52] : [20, 40],
     popupAnchor: [0, -40],
   })
 
-const getMarkerIcon = (emoji) => {
+const getMarkerIcon = (emoji, isSelected = false) => {
   if (!emoji || emoji === "default") {
-    return pinkIcon
+    return isSelected
+      ? L.divIcon({
+          html: `<div class="selected-default-marker">📍</div>`,
+          className: "",
+          iconSize: [52, 52],
+          iconAnchor: [26, 52],
+          popupAnchor: [0, -52],
+        })
+      : pinkIcon
   }
 
-  return createEmojiIcon(emoji)
+  return createEmojiIcon(emoji, isSelected)
 }
 
 async function reverseGeocode(lat, lng) {
@@ -366,11 +378,15 @@ export default function Map({
             })
           }}
         >
-          {points.map((point) => (
+          {points.map((point) => {
+          const isSelected = selectedPoint?.id === point.id
+
+          return (
             <Marker
               key={point.id}
               position={[point.lat, point.lng]}
-              icon={getMarkerIcon(point.markerEmoji)}
+              icon={getMarkerIcon(point.markerEmoji, isSelected)}
+              zIndexOffset={isSelected ? 1000 : 0}
               eventHandlers={{
                 click: () => {
                   setSelectedPoint(point)
@@ -408,7 +424,8 @@ export default function Map({
                 </div>
               </Popup>
             </Marker>
-          ))}
+          )
+        })}
         </MarkerClusterGroup>
       </MapContainer>
     </div>
