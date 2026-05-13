@@ -8,7 +8,6 @@ export default function AuthPage({ onLogin, initialMode = "register" }) {
     onLogin({
       name: "Kovács Dorina",
       email: "dorina@example.com",
-      username: "dorina",
     })
   }
 
