@@ -69,13 +69,13 @@ src/
 ### 1. Repository klónozása
 
 ```bash
-git clone https://github.com/felhasznalonev/interactive-map.git
+git clone https://github.com/Kdorina/Interactive_map_frontend.git
 ```
 
 ### 2. Projekt mappa megnyitása
 
 ```bash
-cd interactive-map
+cd Interactive_map_frontend
 ```
 
 ### 3. Függőségek telepítése
