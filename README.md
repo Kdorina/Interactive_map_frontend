@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Interactive Map Application
 
 Modern, interaktív térképes webalkalmazás React és Leaflet használatával, amely lehetővé teszi saját helyek mentését, kategorizálását, keresését és térképes megjelenítését.
